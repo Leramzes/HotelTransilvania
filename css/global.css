@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar {
+    width: 250px;
+    transition: width 0.3s ease;
+}
+
+#sidebar .nav-link {
+    transition: background 0.3s;
+}
+
+#sidebar .nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#sidebar h4,
+#sidebar h5 {
+    font-size: 1rem;
+}
+
+#sidebar .fa {
+    font-size: 20px;
+}
+
+#contenido {
+    overflow-y: auto;
+}
+
+/* Estilos para hacer el sidebar responsive */
+@media (max-width: 768px) {
+    #sidebar {
+        width: 60px;
+    }
+
+    #sidebar h4,
+    #sidebar h5 {
+        font-size: 0.9rem;
+    }
+
+    #sidebar .fa {
+        font-size: 18px;
+    }
+}
+
+/* Estilo para mostrar el sidebar completo al expandirlo */
+.sidebar-expanded #sidebar {
+    width: 250px;
+}
+
+/* Estilo para el botón de contraer/expandir el sidebar */
+#toggle-sidebar {
+    background-color: #343a40;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
