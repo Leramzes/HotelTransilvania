@@ -1,6 +1,25 @@
-// Función para alternar el estado del sidebar
-document.getElementById('toggle-sidebar').addEventListener('click', function() {
-    document.body.classList.toggle('sidebar-expanded');
+// Función para expandir o contraer el sidebar
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('expand');
+
+    // Guardar el estado en localStorage
+    localStorage.setItem('sidebarExpanded', sidebar.classList.contains('expand'));
+}
+
+// Asignar la función al botón de toggle
+document.querySelector('.toggle-btn').addEventListener('click', toggleSidebar);
+
+// Restaurar el estado del sidebar al cargar la página
+document.addEventListener('DOMContentLoaded', function () {
+    const sidebar = document.getElementById('sidebar');
+    const isExpanded = localStorage.getItem('sidebarExpanded') === 'true';
+
+    if (isExpanded) {
+        sidebar.classList.add('expand');
+    } else {
+        sidebar.classList.remove('expand');
+    }
 });
 
 // Función para cargar el contenido sin actualizar el sidebar
