@@ -1,0 +1,59 @@
+<head>
+    <!-- Include Font Awesome and Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="../css/habitaciones.css">
+</head>
+<body>
+    <!-- Título y breadcrumb alineados -->
+        <div class="d-flex justify-content-between align-items-center">
+            <h4><i class="fa-solid fa-basket-shopping me-2"></i> Habitaciones para realizar ventas</h4>
+
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#" onclick="cargarPagina('html/ventaDirecta.html')">¿Venta Directa?</a></li>
+                </ol>
+            </nav>
+        </div>
+
+        <!-- Pestañas -->
+        <ul class="nav nav-tabs mt-4">
+            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#todos">Todos</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#primer-nivel">Primer Nivel</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#segundo-nivel">Segundo Nivel</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tercer-nivel">Tercer Nivel</button></li>
+        </ul>
+
+        <!-- Contenido de pestañas -->
+        <div class="tab-content mt-3">
+            <div id="todos" class="tab-pane fade show active">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="room-card occupied" onclick="cargarPagina('html/venderProductos.html')">
+                            <h5>696</h5>
+                            <span>PRESIDENCIAL</span>
+                            <i class="fas fa-bed room-icon"></i>
+                            <div class="room-status">
+                                <span>Ocupada</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="room-card occupied" onclick="handleClick(105)">
+                            <h5>105</h5>
+                            <span>TRIPLE</span>
+                            <i class="fas fa-bed room-icon"></i>
+                            <div class="room-status">
+                                <span>Ocupada</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>

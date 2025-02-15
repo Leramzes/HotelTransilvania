@@ -1,59 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <!-- Include Font Awesome and Ionicons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="../css/habitaciones.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Habitaciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <!-- Título y breadcrumb alineados -->
-        <div class="d-flex justify-content-between align-items-center">
-            <h4><i class="fa-solid fa-basket-shopping me-2"></i> Habitaciones para realizar ventas</h4>
+    <div class="d-flex justify-content-between align-items-center">
+        <h4><i class="fa-solid fa-gears me-2"></i> Habitaciones</h4>
 
-            <!-- Breadcrumb -->
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="#" onclick="cargarPagina('html/ventaDirecta.html')">¿Venta Directa?</a></li>
-                </ol>
-            </nav>
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="/menu.html">Configuración</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Habitaciones</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Sección de habitaciones -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-9 d-flex gap-2">
+                    <p>Catálogo de Habitaciones</p>
+                </div>
+                <div class="col-3 d-flex justify-content-end align-items-center">
+                    <label for="estadoSelect" class="form-label m-0 me-2">Estado:</label>
+                    <select id="estadoSelect" class="form-select  w-auto">
+                        <option value="activos">Activos</option>
+                        <option value="inactivos">Inactivos</option>
+                    </select>
+                    <script>
+                    document.getElementById("estadoSelect").addEventListener("change", function() {
+                        console.log("Estado seleccionado:", this.value);
+                    });
+                    </script>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarHabitación">
+                <i class="fas fa-plus"></i> Agregar nueva
+            </button>
         </div>
 
-        <!-- Pestañas -->
-        <ul class="nav nav-tabs mt-4">
-            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#todos">Todos</button></li>
-            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#primer-nivel">Primer Nivel</button></li>
-            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#segundo-nivel">Segundo Nivel</button></li>
-            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tercer-nivel">Tercer Nivel</button></li>
-        </ul>
-
-        <!-- Contenido de pestañas -->
-        <div class="tab-content mt-3">
-            <div id="todos" class="tab-pane fade show active">
-                <div class="row">
-                    <div class="col-md-3">
-                        <button class="room-card occupied" onclick="cargarPagina('html/venderProductos.html')">
-                            <h5>696</h5>
-                            <span>PRESIDENCIAL</span>
-                            <i class="fas fa-bed room-icon"></i>
-                            <div class="room-status">
-                                <span>Ocupada</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </div>
-                        </button>
+        <!-- Modal para agregar habitación -->
+        <div class="modal fade" id="modalAgregarHabitación" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Agregar Habitación</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
-                    <div class="col-md-3">
-                        <button class="room-card occupied" onclick="handleClick(105)">
-                            <h5>105</h5>
-                            <span>TRIPLE</span>
-                            <i class="fas fa-bed room-icon"></i>
-                            <div class="room-status">
-                                <span>Ocupada</span>
-                                <i class="fas fa-arrow-right"></i>
+                    <div class="modal-body">
+                        <form id="formHabitacion">
+                            <input type="hidden" id="editIndex">
+                            <div class="mb-3">
+                                <label class="form-label">Nombre/Número de Habitación</label>
+                                <input type="text" class="form-control" id="nombre" required>
                             </div>
-                        </button>
+                            <div class="mb-3">
+                                <label class="form-label">Nivel/Piso</label>
+                                <select class="form-select" id="piso" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Categoría</label>
+                                <select class="form-select" id="categoria" required>
+                                    <option value="#">Categoría 1</option>
+                                    <option value="#">Categoría 2</option>
+                                    <option value="#">Categoría 3</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Precio</label>
+                                <input type="number" class="form-control" id="precio" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Tarifa</label>
+                                <select class="form-select" id="tarifa" required>
+                                    <option value="23">24 hr.</option>
+                                    <option value="12">12 hr.</option>
+                                    <option value="XX">XX hr.</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="detalle" class="form-label">Detalle</label>
+                                <textarea class="form-control" id="detalle" rows="4" required></textarea>
+                            </div>
+                            <button type="button" class="btn btn-success">Guardar</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Modal para editar habitación -->
+        <div class="modal fade" id="modalEditarHabitacion" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Editar Habitación</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditarHabitacion">
+                            <input type="hidden" id="editIndex">
+                            <div class="mb-3">
+                                <label class="form-label">Nombre/Número de Habitación</label>
+                                <input type="text" class="form-control" id="editNombre">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nivel/Piso</label>
+                                <select class="form-select" id="editPiso" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Categoría</label>
+                                <select class="form-select" id="editCategoria" required>
+                                    <option value="#">Categoría 1</option>
+                                    <option value="#">Categoría 2</option>
+                                    <option value="#">Categoría 3</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Precio</label>
+                                <input type="number" class="form-control" id="editPrecio" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Tarifa</label>
+                                <select class="form-select" id="editTarifa" required>
+                                    <option value="23">24 hr.</option>
+                                    <option value="12">12 hr.</option>
+                                    <option value="XX">XX hr.</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="detalle" class="form-label">Detalle</label>
+                                <textarea class="form-control" id="editDetalle" rows="4" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Estatus</label>
+                                <select class="form-select" id="editEstatus">
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-success">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <span>Mostrando 
+                    <input type="number" min="1" max="999" value="1" class="form-control d-inline-block" style="width: 3rem;"> registros
+                </span>
+
+                <div class="input-group" style="max-width: 250px;">
+                    <input type="text" class="form-control" placeholder="Buscar">
+                    <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-warning">
+                        <tr>
+                            <th>Nombre/Número de Habitación</th>
+                            <th>Nivel/Piso</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Tarifa</th>
+                            <th>Detalle</th>
+                            <th>Estatus</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaUsuarios">
+                        <tr>
+                            <td>100</td>
+                            <td>1</td>
+                            <td>Simple</td>
+                            <td>S/.696</td>
+                            <td>24 hr.</td>
+                            <td>Bien cómodo todo</td>
+                            <td>Activo</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditarHabitacion">✏️</button>
+                                <button class="btn btn-danger btn-sm">❌</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <span>Mostrando registros del 1 al * de un total de * registros</span>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination mb-0">
+                        <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+</html>
