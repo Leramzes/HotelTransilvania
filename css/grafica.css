@@ -1,0 +1,5 @@
+#graficaIngresos {
+    max-height: 400px !important;
+    /* Limita la altura */
+    width: 100% !important;
+}

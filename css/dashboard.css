@@ -1,12 +1,7 @@
-.row {
+.custom-row-rooms {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    padding-right: 0;
-    padding-left: 0;
-}
-
-.row > * {
     padding-right: 0 !important;
     padding-left: 0 !important;
 }
@@ -88,4 +83,12 @@
 .bg-danger {
     background-color: #ec5122 !important;
     color: #212529;
+}
+
+@media (max-width: 768px) {
+    .col-lg-3 {
+        flex: 1;
+        max-width: 100%;
+        min-width: 250px;
+    }
 }

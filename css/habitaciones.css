@@ -47,27 +47,21 @@
 
 /* Colores de las habitaciones */
 .available {
-    background-color: #28a745;
+    background-color: #28a745; /* Verde - Disponible */
 }
 
-/* Verde - Disponible */
 .occupied {
-    background-color: #dc3545;
+    background-color: #dc3545; /* Rojo - Ocupada */
 }
 
-/* Rojo - Ocupada */
 .cleaning {
-    background-color: #007bff;
+    background-color: #007bff; /* Azul - Limpieza */
 }
 
-/* Azul - Limpieza */
 .reserved {
-    background-color: #17a2b8;
+    background-color: #17a2b8; /* Celeste - Reservada */
 }
 
-/* Celeste - Reservada */
 .warning {
-    background-color: #fd7e14;
+    background-color: #fd7e14; /* Naranja - Mantenimiento */
 }
-
-/* Naranja - Mantenimiento */
