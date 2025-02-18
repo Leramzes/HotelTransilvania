@@ -158,3 +158,9 @@ a.sidebar-link:hover {
     height: 2px;
     background-color: rgba(255, 255, 255);
 }
+
+hr {
+    border: 4px double #0e2238;
+    height: 4px;
+    background-color: #0e2238;
+}

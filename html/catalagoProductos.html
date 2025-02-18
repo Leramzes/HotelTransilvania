@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="../css/venderProductos.css">
 </head>
 <body>
     <!-- Título y breadcrumb alineados -->
@@ -19,6 +18,210 @@
                 <li class="breadcrumb-item active" aria-current="page">Catálogo de Productos</li>
             </ol>
         </nav>
+    </div>
+
+    <!-- Sección de Catálogo de Productos -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-9 d-flex gap-2">
+                    <p>Catálogo de Productos</p>
+                </div>
+                <div class="col-3 d-flex justify-content-end align-items-center">
+                    <select id="estadoSelect" class="form-select  w-auto">
+                        <option value="activos">Activos</option>
+                        <option value="inactivos">Inactivos</option>
+                    </select>
+                    <script>
+                    document.getElementById("estadoSelect").addEventListener("change", function() {
+                        console.log("Estado seleccionado:", this.value);
+                    });
+                    </script>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-start mt-2">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarCatalogoProducto">
+                    <i class="fas fa-plus"></i> Agregar nuevo
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal para agregar Catálogo de Producto -->
+        <div class="modal fade" id="modalAgregarCatalogoProducto" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Agregar Catálogo de Producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formCatalogoProducto">
+                            <input type="hidden" id="editIndex">
+                            <div class="mb-3">
+                                <label class="form-label">Tipo</label>
+                                <select class="form-select" id="tipo" required>
+                                    <option value="#">Producto</option>
+                                    <option value="#">Servicio</option>
+                                    <option value="#">Otro</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Marca</label>
+                                <input type="text" class="form-control" id="marca" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Detalle</label>
+                                <input type="text" class="form-control" id="detalle" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Stock</label>
+                                <input type="number" class="form-control" id="stock" min="0" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Proveedor</label>
+                                <input type="text" class="form-control" id="proveedor" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Precio Compra</label>
+                                <input type="number" class="form-control" id="precioCompra" min="0" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Precio Venta</label>
+                                <input type="number" class="form-control" id="precioVenta" min="0" required>
+                            </div>
+                            <button type="button" class="btn btn-success">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para editar Cliente -->
+        <div class="modal fade" id="modalEditarCatalogoProducto" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Editar Catálogo de Producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditarCatalogoProducto">
+                            <input type="hidden" id="editIndex">
+                            <div class="mb-3">
+                                <label class="form-label">Tipo</label>
+                                <select class="form-select" id="editTipo" required>
+                                    <option value="#">Producto</option>
+                                    <option value="#">Servicio</option>
+                                    <option value="#">Otro</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="editNombre" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Marca</label>
+                                <input type="text" class="form-control" id="editMarca" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Detalle</label>
+                                <input type="text" class="form-control" id="editDetalle" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Stock</label>
+                                <input type="number" class="form-control" id="editStock" min="0" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Proveedor</label>
+                                <input type="text" class="form-control" id="editProveedor" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Precio Compra</label>
+                                <input type="number" class="form-control" id="editPrecioCompra" min="0" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Precio Venta</label>
+                                <input type="number" class="form-control" id="editPrecioVenta" min="0" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Estatus</label>
+                                <select class="form-select" id="editEstatus">
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-success">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <span>Mostrando 
+                    <input type="number" min="1" max="999" value="1" class="form-control d-inline-block" style="width: 3rem;"> registros
+                </span>
+
+                <div class="input-group" style="max-width: 250px;">
+                    <input type="text" class="form-control" placeholder="Buscar">
+                    <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-warning">
+                        <tr>
+                            <th>N°</th>
+                            <th>Tipo</th>
+                            <th>Nombre</th>
+                            <th>Marca</th>
+                            <th>Detalle</th>
+                            <th>Stock</th>
+                            <th>Proveedor</th>
+                            <th>Precio Compra</th>
+                            <th>Precio Venta</th>
+                            <th>Estatus</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaUsuarios">
+                        <tr>
+                            <td>1</td>
+                            <td>Producto</td>
+                            <td>Gaseosa</td>
+                            <td>Inca Kola</td>
+                            <td>Gaseosa de 3L.</td>
+                            <td>15</td>
+                            <td>Inca Kola</td>
+                            <td>S/.4</td>
+                            <td>S/.6</td>
+                            <td>Activo</td>
+                            <td class="d-flex justify-content-center gap-1">
+                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditarCatalogoProducto">✏️</button>
+                                <button class="btn btn-danger btn-sm">❌</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-end align-items-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination mb-0">
+                        <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </div>
 
 </body>
